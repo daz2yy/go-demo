@@ -5,6 +5,9 @@ package main
 // 3. GET, POST 方法封装
 // 4. Run 启动 http 服务
 // 5. handler, ok := router[r]
+// 6. 引用本地 module，修改 go.mod:
+// require mango v0.0.1
+// replace mango => ./mango
 
 import (
 	"fmt"

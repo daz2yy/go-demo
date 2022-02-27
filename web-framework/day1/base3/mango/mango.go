@@ -16,14 +16,17 @@ func New() *Mango {
 	}
 }
 
-func (engine *Mango) GET(pattern string, f http.HandlerFunc) {
-	url := "GET-" + pattern
+func (engine *Mango) AddRoute(method string, pattern string, f http.HandlerFunc) {
+	url := method + "-" + pattern
 	engine.router[url] = f
 }
 
+func (engine *Mango) GET(pattern string, f http.HandlerFunc) {
+	engine.AddRoute("GET", pattern, f)
+}
+
 func (engine *Mango) POST(pattern string, f http.HandlerFunc) {
-	url := "POST-" + pattern
-	engine.router[url] = f
+	engine.AddRoute("POST", pattern, f)
 }
 
 func (engine *Mango) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
